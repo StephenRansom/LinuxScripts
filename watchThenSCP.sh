@@ -10,15 +10,16 @@
 # a file (when using nohup to run this script that will be your nohup.out file)
 #
 # Intended to be run as "nohup watchThenSCP.sh"
-#
+# Dependent on inotify-tools
 
 
 
-watchedDirectory="~/"
-watchedFiletype
+watchedDirectory=" "
+watchedFiletype=" "
 username=""
 serverAddress=" "
-targetDirectory="/data/Downloads/torrents"
+targetDirectory=" "
+
 
 
 clear
@@ -28,7 +29,7 @@ clear
 	if [ ${file: -8} == $watchedFiletype ]
 	  then
 	   echo "The file '$file' appeared in directory '$path' via '$action'"	
-           scp /mnt/Data/Downloads/"$file" $username:$serverAddress/$targetDirectory
+           scp $watchedDirectory"$file" $username@$serverAddress:$targetDirectory
            
   fi    
   done
